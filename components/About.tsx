@@ -122,15 +122,15 @@ export const About = () => {
                 style={{ transform: "translateZ(30px)" }} 
               />
 
-             {/* Profile Picture Placeholder */}
+             {/* Profile Picture */}
               <div 
                 className="w-40 h-40 rounded-full bg-zinc-800 border-2 border-emerald-500/30 mb-4 flex items-center justify-center shadow-lg pointer-events-none z-10 overflow-hidden" 
                 style={{ transform: "translateZ(50px)" }}
               >
                 <img 
-                  src="/profile.png" 
+                  // FIX: Menambahkan /portfolio agar gambar terbaca di GitHub Pages
+                  src="/portfolio/profile.png" 
                   alt="Jordan Wijayanto" 
-                  // Tips: Tambahkan object-top jika kepala masih terpotong di atas
                   className="w-full h-full object-cover object-top" 
                 />
               </div>
