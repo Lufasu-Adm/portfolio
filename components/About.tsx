@@ -40,12 +40,13 @@ export const About = () => {
     <div className="min-h-screen w-full bg-black text-white flex items-center justify-center px-6 md:px-20 py-20 relative z-10 overflow-hidden">
       <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         
-        {/* Typography Section */}
+        {/* Typography Section (UPDATED: Added relative, z-20, and mobile backdrop-blur) */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: false, amount: 0.3 }}
+          className="relative z-20 bg-black/40 backdrop-blur-md p-6 -mx-6 rounded-2xl md:bg-transparent md:backdrop-blur-none md:p-0 md:mx-0 pointer-events-none md:pointer-events-auto"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
             <span className="text-emerald-400">About</span> Me.
@@ -63,7 +64,7 @@ export const About = () => {
           </div>
         </motion.div>
 
-        {/* Interactive ID Card Section */}
+        {/* Interactive ID Card Section (UPDATED: Added relative z-0) */}
         <motion.div
           initial={{ opacity: 0, y: -200 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +75,7 @@ export const About = () => {
             delay: 0.1 
           }}
           viewport={{ once: false, amount: 0.3 }}
-          className="flex justify-center perspective-[1000px]"
+          className="flex justify-center perspective-[1000px] relative z-0 mt-10 md:mt-0"
           style={{ perspective: 1000 }}
         >
           <div className="relative w-80 h-[28rem]">
@@ -128,7 +129,6 @@ export const About = () => {
                 style={{ transform: "translateZ(50px)" }}
               >
                 <img 
-                  // FIX: Menambahkan /portfolio agar gambar terbaca di GitHub Pages
                   src="/portfolio/profile.png" 
                   alt="Jordan Wijayanto" 
                   className="w-full h-full object-cover object-top" 
