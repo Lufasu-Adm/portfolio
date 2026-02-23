@@ -12,63 +12,64 @@ export const Gallery = ({ activeId, onHighlightComplete }: GalleryProps) => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const showcaseItems = [
-    { 
-      id: "showcase-waifu-tracker", 
-      title: "Waifu Habit Tracker", 
-      category: "Gamified Productivity App", 
-      image: "/waifu_habit_tracker.png", 
-      size: "md:col-span-2 md:row-span-2 min-h-[500px]", 
-      bgClass: "bg-pink-950/20" 
-    },
-    { 
-      id: "showcase-mood-map", 
-      title: "Mood Map AI", 
-      category: "Privacy-First Mental Health", 
-      image: "/AI_mood_map.png", 
-      size: "md:col-span-1 md:row-span-2 min-h-[500px]", 
-      bgClass: "bg-indigo-950/20" 
-    },
-    { 
-      id: "showcase-shorts", 
-      title: "AI Shorts Generator", 
-      category: "Automated Content Creation", 
-      image: "/ai_shorts_gen.png", 
-      size: "md:col-span-1 md:row-span-1 min-h-[300px]", 
-      bgClass: "bg-violet-950/20" 
-    },
-    { 
-      id: "showcase-vault", 
-      title: "Password Vault", 
-      category: "Secure Web Utility", 
-      image: "/password_vault.png", 
-      size: "md:col-span-1 md:row-span-1 min-h-[300px]", 
-      bgClass: "bg-amber-950/20" 
-    },
-    { 
-      id: "showcase-research-assistant", 
-      title: "AI Research Assistant", 
-      category: "Autonomous Agent / Telegram", 
-      image: "/research_assistant.png", 
-      size: "md:col-span-1 md:row-span-1 min-h-[300px]", 
-      bgClass: "bg-violet-950/20" 
-    },
-    { 
-      id: "showcase-ruphas", 
-      title: "Ruphas: Sticker Companion", 
-      category: "Emotional LLM Interaction", 
-      image: "/AI_sticker_companion.png", 
-      size: "md:col-span-1 md:row-span-1 min-h-[300px]", 
-      bgClass: "bg-rose-950/20" 
-    },
-    { 
-      id: "showcase-booking", 
-      title: "Booking Ruang Rapat", 
-      category: "Laravel Enterprise System", 
-      image: "/bookng_ruangrapat.png", 
-      size: "md:col-span-1 md:row-span-1 min-h-[300px]", 
-      bgClass: "bg-emerald-950/20" 
-    },
-  ];
+  { 
+    id: "showcase-waifu-tracker", 
+    title: "Waifu Habit Tracker", 
+    category: "Gamified Productivity App", 
+    // TAMBAHKAN /portfolio di depan nama file
+    image: "/portfolio/waifu_habit_tracker.png", 
+    size: "md:col-span-2 md:row-span-2 min-h-[500px]", 
+    bgClass: "bg-pink-950/20" 
+  },
+  { 
+    id: "showcase-mood-map", 
+    title: "Mood Map AI", 
+    category: "Privacy-First Mental Health", 
+    image: "/portfolio/AI_mood_map.png", 
+    size: "md:col-span-1 md:row-span-2 min-h-[500px]", 
+    bgClass: "bg-indigo-950/20" 
+  },
+  { 
+    id: "showcase-shorts", 
+    title: "AI Shorts Generator", 
+    category: "Automated Content Creation", 
+    image: "/portfolio/ai_shorts_gen.png", 
+    size: "md:col-span-1 md:row-span-1 min-h-[300px]", 
+    bgClass: "bg-violet-950/20" 
+  },
+  { 
+    id: "showcase-vault", 
+    title: "Password Vault", 
+    category: "Secure Web Utility", 
+    image: "/portfolio/password_vault.png", 
+    size: "md:col-span-1 md:row-span-1 min-h-[300px]", 
+    bgClass: "bg-amber-950/20" 
+  },
+  { 
+    id: "showcase-research-assistant", 
+    title: "AI Research Assistant", 
+    category: "Autonomous Agent / Telegram", 
+    image: "/portfolio/research_assistant.png", 
+    size: "md:col-span-1 md:row-span-1 min-h-[300px]", 
+    bgClass: "bg-violet-950/20" 
+  },
+  { 
+    id: "showcase-ruphas", 
+    title: "Ruphas: Sticker Companion", 
+    category: "Emotional LLM Interaction", 
+    image: "/portfolio/AI_sticker_companion.png", 
+    size: "md:col-span-1 md:row-span-1 min-h-[300px]", 
+    bgClass: "bg-rose-950/20" 
+  },
+  { 
+    id: "showcase-booking", 
+    title: "Booking Ruang Rapat", 
+    category: "Laravel Enterprise System", 
+    image: "/portfolio/bookng_ruangrapat.png", 
+    size: "md:col-span-1 md:row-span-1 min-h-[300px]", 
+    bgClass: "bg-emerald-950/20" 
+  },
+];
 
   const selectedItem = showcaseItems.find((item) => item.id === selectedId);
 
