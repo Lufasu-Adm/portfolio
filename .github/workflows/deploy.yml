@@ -2,12 +2,16 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main"] # Pastikan ini sesuai dengan branch kamu yang bernama 'main'
 
 permissions:
   contents: read
   pages: write
   id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -15,18 +19,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        # Jika menggunakan domain lufasu-adm.github.io/portfolio, 
+        # pastikan basePath di next.config.mjs sudah diatur.
+
       - name: Install dependencies
         run: npm install
+      
       - name: Build with Next.js
         run: npx next build
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./out # Next.js static export menghasilkan folder 'out'
 
   deploy:
     environment:
