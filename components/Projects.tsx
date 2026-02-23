@@ -3,17 +3,31 @@
 import { motion } from "framer-motion";
 import React from "react";
 
+/**
+ * Interface untuk mendefinisikan struktur data setiap proyek.
+ * Data diambil dari portofolio Jordan Wijayanto.
+ */
+interface Project {
+  title: string;
+  showcaseId: string;
+  description: string;
+  tags: string[];
+  github: string;
+  className: string;
+  gradient: string;
+  border: string;
+}
+
 interface ProjectsProps {
   onProjectClick: (id: string) => void;
 }
 
 export const Projects = ({ onProjectClick }: ProjectsProps) => {
-  const projects = [
+  const projects: Project[] = [
     {
       title: "Mood Map AI",
       showcaseId: "showcase-mood-map",
-      description:
-        "Aplikasi kesehatan mental Privacy-First dengan arsitektur Hybrid. Mengintegrasikan Flutter dan FastAPI untuk analisis sentimen empatik menggunakan Llama 3.3.",
+      description: "Aplikasi kesehatan mental Privacy-First dengan arsitektur Hybrid. Mengintegrasikan Flutter dan FastAPI untuk analisis sentimen empatik menggunakan Llama 3.3.",
       tags: ["Flutter", "FastAPI", "Llama 3.3", "SQLite"],
       github: "https://github.com/Lufasu-Adm",
       className: "md:col-span-2",
@@ -23,8 +37,7 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
     {
       title: "Waifu Habit Tracker",
       showcaseId: "showcase-waifu-tracker",
-      description:
-        "Gamifikasi produktivitas berbasis Flutter dengan asisten AI 'Lumina'. Memfitur sistem streak dan manajemen data offline menggunakan Hive NoSQL.",
+      description: "Gamifikasi produktivitas berbasis Flutter dengan asisten AI 'Lumina'. Memfitur sistem streak dan manajemen data offline menggunakan Hive NoSQL.",
       tags: ["Flutter", "Hive", "Groq/Llama-3", "AI"],
       github: "https://github.com/Lufasu-Adm",
       className: "md:col-span-1",
@@ -34,8 +47,7 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
     {
       title: "AI Shorts Generator",
       showcaseId: "showcase-shorts",
-      description:
-        "Bot Python otomatis pembuat video YouTube Shorts. Menggunakan Groq Llama 3 untuk naskah, EdgeTTS untuk suara, dan Pexels/YouTube untuk background video.",
+      description: "Bot Python otomatis pembuat video YouTube Shorts. Menggunakan Groq Llama 3 untuk naskah, EdgeTTS untuk suara, dan Pexels API.",
       tags: ["Python", "Groq Llama 3", "EdgeTTS", "Automation"],
       github: "https://github.com/Lufasu-Adm/ai-shorts-generator",
       className: "md:col-span-2",
@@ -45,8 +57,7 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
     {
       title: "Password Vault",
       showcaseId: "showcase-vault",
-      description:
-        "Password Manager aman berbasis React & Vite. Menyimpan data secara persisten di LocalStorage dengan fitur built-in password generator.",
+      description: "Password Manager aman berbasis React & Vite. Menyimpan data secara persisten di LocalStorage dengan fitur built-in password generator.",
       tags: ["React", "Vite", "Tailwind CSS", "LocalStorage"],
       github: "https://github.com/Lufasu-Adm/password-vault",
       className: "md:col-span-1",
@@ -56,8 +67,7 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
     {
       title: "Enterprise Booking System",
       showcaseId: "showcase-booking",
-      description:
-        "Sistem manajemen ruang rapat berbasis Laravel 10 di PT PAL. Implementasi QR Code Attendance dan laporan PDF dinamis untuk efisiensi birokrasi.",
+      description: "Sistem manajemen ruang rapat berbasis Laravel 10 di PT PAL. Implementasi QR Code Attendance untuk efisiensi birokrasi.",
       tags: ["Laravel 10", "PostgreSQL", "QR Code", "Enterprise"],
       github: "https://github.com/Lufasu-Adm/booking-ruang-rapat",
       className: "md:col-span-2",
@@ -67,8 +77,7 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
     {
       title: "AI Auto Research Assistant",
       showcaseId: "showcase-research-assistant",
-      description:
-        "Bot riset otonom harian menggunakan LLaMA 3.3. Mengotomatisasi tech monitoring melalui scraping Google News dan Telegram API.",
+      description: "Bot riset otonom harian menggunakan LLaMA 3.3. Mengotomatisasi tech monitoring melalui scraping Google News dan Telegram API.",
       tags: ["Python", "LLaMA 3.3", "Automation", "Telegram API"],
       github: "https://github.com/Lufasu-Adm/ai-research-assistant",
       className: "md:col-span-1",
@@ -78,10 +87,9 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
     {
       title: "NASA Exoplanet Query",
       showcaseId: "showcase-nasa",
-      description:
-        "Platform klasifikasi habitabilitas planet menggunakan Machine Learning Python berdasarkan dataset NASA Archive.",
-      tags: ["Python", "Machine Learning", "Data Science"],
-      github: "https://github.com/Lufasu-Adm",
+      description: "Platform klasifikasi habitabilitas planet menggunakan Random Forest berdasarkan dataset NASA Exoplanet Archive.",
+      tags: ["Python", "Machine Learning", "FastAPI", "NASA Data"],
+      github: "https://github.com/Lufasu-Adm/nasa-exoplanet-query",
       className: "md:col-span-1",
       gradient: "from-blue-500/10 to-indigo-900/20",
       border: "border-blue-500/20",
@@ -89,8 +97,7 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
     {
       title: "Autofeeder Web Control",
       showcaseId: "showcase-autofeeder",
-      description:
-        "Implementasi IoT untuk kontrol akuarium otomatis melalui antarmuka web dengan penjadwalan presisi.",
+      description: "Implementasi IoT untuk kontrol akuarium otomatis melalui antarmuka web dengan penjadwalan presisi.",
       tags: ["IoT", "Hardware", "C++", "Web Control"],
       github: "https://github.com/Lufasu-Adm/autofeeder-web-control",
       className: "md:col-span-1",
@@ -100,9 +107,8 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
     {
       title: "AI Companion: Ruphas",
       showcaseId: "showcase-ruphas",
-      description:
-        "Aplikasi chat mobile Flutter dengan respons emosional reaktif berdasarkan analisis mood pengguna.",
-      tags: ["Flutter", "Riverpod", "LLM"],
+      description: "Aplikasi chat mobile Flutter dengan respons emosional reaktif berdasarkan analisis mood pengguna.",
+      tags: ["Flutter", "Riverpod", "LLM", "Sentiment"],
       github: "https://github.com/Lufasu-Adm/AI-Stickers-Companion",
       className: "md:col-span-1",
       gradient: "from-rose-500/10 to-pink-900/20",
@@ -131,8 +137,8 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
             Featured <span className="text-emerald-400">Projects.</span>
           </h2>
-          <p className="text-gray-400 mt-4 text-lg font-light leading-relaxed">
-            Integrasi sistem cerdas, arsitektur enterprise, dan solusi berbasis data oleh Jordan Wijayanto.
+          <p className="text-gray-400 mt-4 text-lg font-light leading-relaxed max-w-2xl">
+            Kumpulan integrasi sistem cerdas, arsitektur enterprise, dan solusi berbasis data oleh **Jordan Wijayanto**, mahasiswa Informatika Telkom University Surabaya.
           </p>
         </motion.div>
 
@@ -142,13 +148,21 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 260,
+                damping: 20 
+              }}
               viewport={{ once: false, amount: 0.2 }}
               whileHover={{ scale: 1.02 }}
               onClick={() => handleNavigation(project.showcaseId)}
               className={`relative rounded-3xl p-8 border ${project.border} bg-gradient-to-br ${project.gradient} backdrop-blur-sm overflow-hidden group cursor-pointer ${project.className}`}
             >
+              {/* Efek kilau saat hover */}
               <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+              
               <div className="relative z-10 h-full flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-start mb-3">
@@ -159,7 +173,7 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => e.stopPropagation()} // Supaya tidak men-trigger scroll saat klik link
                       className="p-2 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-all shadow-lg"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -172,6 +186,7 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
                     {project.description}
                   </p>
                 </div>
+
                 <div className="flex flex-wrap gap-2 mt-8">
                   {project.tags.map((tag, tagIndex) => (
                     <span
