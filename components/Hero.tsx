@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { BackgroundBeams } from "./ui/BackgroundBeams";
+import { Magnetic } from "./Magnetic";
+import { TextGenerateEffect } from "./TextGenerateEffect"; // Import komponen baru
 
 export const Hero = () => {
   return (
@@ -40,16 +42,10 @@ export const Hero = () => {
           </span>
         </motion.h1>
 
-        {/* Professional Summary and Focus */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          viewport={{ once: false, amount: 0.3 }}
-          className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10"
-        >
-          Informatics Student | AI Enthusiast | Creative Developer
-        </motion.p>
+        {/* === EFEK TEKS DIKETIK AI MENGGANTIKAN TEKS STATIS === */}
+        <div className="mb-10 min-h-[40px]"> {/* min-h agar layout tidak lompat saat teks belum muncul */}
+          <TextGenerateEffect words="Informatics Student | AI Enthusiast | Creative Developer" />
+        </div>
 
         {/* Call to Action (CTA) Interface */}
         <motion.div
@@ -57,19 +53,34 @@ export const Hero = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
           viewport={{ once: false, amount: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <button className="px-8 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)]">
-            Explore Projects
-          </button>
-          <a
-            href="https://github.com/Lufasu-Adm"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-3 rounded-full border border-emerald-500/30 hover:border-emerald-500 text-white transition-all duration-300 backdrop-blur-sm"
-          >
-            GitHub Lufasu-Adm
-          </a>
+          {/* === TOMBOL MAGNETIC 1 === */}
+          <Magnetic>
+            <button 
+              onClick={() => {
+                const element = document.getElementById("projects");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
+              className="px-8 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] block"
+            >
+              Explore Projects
+            </button>
+          </Magnetic>
+          
+          {/* === TOMBOL MAGNETIC 2 === */}
+          <Magnetic>
+            <a
+              href="https://github.com/Lufasu-Adm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 rounded-full border border-emerald-500/30 hover:border-emerald-500 text-white transition-all duration-300 backdrop-blur-sm block"
+            >
+              GitHub Lufasu-Adm
+            </a>
+          </Magnetic>
         </motion.div>
 
       </div>

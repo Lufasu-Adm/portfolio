@@ -29,8 +29,8 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
       showcaseId: "showcase-genshin",
       description: "Data-Driven character insights menggunakan Unsupervised Learning (K-Means Clustering) untuk penentuan role objektif dan sistem rekomendasi hibrida berbasis jarak Euclidean.",
       tags: ["Python", "Machine Learning", "Scikit-Learn", "Pandas"],
-      github: "https://github.com/Lufasu-Adm", 
-      className: "md:col-span-2", // Dibuat lebar agar jadi sorotan utama
+      github: "https://github.com/Lufasu-Adm/genshin-impact-analytics", 
+      className: "md:col-span-2", 
       gradient: "from-cyan-500/10 to-teal-900/20",
       border: "border-cyan-500/20",
     },
@@ -40,7 +40,7 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
       description: "Aplikasi kesehatan mental Privacy-First dengan arsitektur Hybrid. Mengintegrasikan Flutter dan FastAPI untuk analisis sentimen empatik menggunakan Llama 3.3.",
       tags: ["Flutter", "FastAPI", "Llama 3.3", "SQLite"],
       github: "https://github.com/Lufasu-Adm",
-      className: "md:col-span-1", // Disesuaikan agar pas berdampingan dengan Genshin
+      className: "md:col-span-1", 
       gradient: "from-indigo-500/10 to-blue-900/20",
       border: "border-indigo-500/20",
     },

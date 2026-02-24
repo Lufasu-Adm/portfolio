@@ -7,6 +7,10 @@ export const Contact = () => {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  
+  // State baru untuk trigger Easter Egg Gacha
+  const [showGacha, setShowGacha] = useState(false);
+
   const [messages, setMessages] = useState([
     { role: "system", content: "Connection established. Selamat datang di portofolio Jordan." },
     { role: "system", content: "Ketik 'help' untuk melihat daftar protokol yang tersedia." }
@@ -27,7 +31,7 @@ export const Contact = () => {
       
       switch (command) {
         case "help":
-          response = "PERINTAH: 'about', 'projects', 'vault', 'shorts', 'tech', 'skripsi', 'hobby', 'clear'.";
+          response = "PERINTAH: 'about', 'projects', 'vault', 'shorts', 'tech', 'skripsi', 'hobby', 'clear', 'run genshin.exe', pull gacha'";
           break;
         case "about":
           response = "Jordan Wijayanto (Joo). Mahasiswa S1 Informatika Telkom University Surabaya (Sem. 7). Fokus pada AI, Web Dev, dan Sistem Enterprise.";
@@ -50,16 +54,25 @@ export const Contact = () => {
         case "hobby":
           response = "NON-TECH_LOG: Fotografi (Landscape/Product), Genshin Impact (World exploration), dan Wuthering Waves.";
           break;
-        case "genshin":
-        case "wuwa":
-          response = "GAMING_MODE: User 'Joo' terdeteksi sering login ke Teyvat dan Solaris-3 untuk melepas penat koding.";
+        
+        // --- EASTER EGG COMMANDS ---
+        case "run genshin.exe":
+          response = "SYSTEM OVERRIDE: Membuka Genshin Impact... ERROR: RAM tidak cukup. Silakan tutup tab StackOverflow dan Chrome Anda terlebih dahulu.";
           break;
+        case "pull gacha":
+          response = "🌟 WISH INITIATED: Mengalihkan daya server untuk memanggil entitas Bintang 5...";
+          // Trigger animasi gacha selama 4 detik
+          setShowGacha(true);
+          setTimeout(() => setShowGacha(false), 4000);
+          break;
+        // ---------------------------
+
         case "clear":
           setMessages([]);
           setIsTyping(false);
           return;
         default:
-          response = `ERROR: Perintah '${command}' tidak ditemukan. Ketik 'help' untuk daftar protokol.`;
+          response = `ERROR: Perintah '${command}' tidak dikenali. Ketik 'help' untuk daftar protokol.`;
       }
 
       setMessages((prev) => [...prev, { role: "system", content: response }]);
@@ -76,74 +89,119 @@ export const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-black text-white py-24 px-6 md:px-20 relative z-10 border-t border-white/5 flex items-center">
-      <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-left">
-            Let's <span className="text-emerald-400">Connect.</span>
-          </h2>
-          <p className="text-gray-400 text-lg mb-8 leading-relaxed text-left">
-            Tertarik berkolaborasi dalam riset kecerdasan buatan atau diskusi sistem terintegrasi? Silakan hubungi saya melalui tautan di bawah ini.
-          </p>
+    <>
+      <div className="min-h-screen w-full bg-black text-white py-24 px-6 md:px-20 relative z-10 border-t border-white/5 flex items-center">
+        <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-left">
+              Let's <span className="text-emerald-400">Connect.</span>
+            </h2>
+            <p className="text-gray-400 text-lg mb-8 leading-relaxed text-left">
+              Tertarik berkolaborasi dalam riset kecerdasan buatan atau diskusi sistem terintegrasi? Silakan hubungi saya melalui tautan di bawah ini.
+            </p>
 
-          <div className="flex gap-4">
-            <a href="https://github.com/Lufasu-Adm" target="_blank" className="px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500 hover:text-emerald-400 transition-all duration-300">GitHub</a>
-            <a href="mailto:1jordan4wijayanto@gmail.com" className="px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500 hover:text-emerald-400 transition-all duration-300">Email</a>
-            <a href="https://www.linkedin.com/in/jordan-wijayanto-adm/" className="px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500 hover:text-emerald-400 transition-all duration-300">LinkedIn</a>
-          </div>
-        </motion.div>
+            <div className="flex gap-4">
+              <a href="https://github.com/Lufasu-Adm" target="_blank" className="px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500 hover:text-emerald-400 transition-all duration-300">GitHub</a>
+              <a href="mailto:1jordan4wijayanto@gmail.com" className="px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500 hover:text-emerald-400 transition-all duration-300">Email</a>
+              <a href="https://www.linkedin.com/in/jordan-wijayanto-adm/" className="px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500 hover:text-emerald-400 transition-all duration-300">LinkedIn</a>
+            </div>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-zinc-950 border border-zinc-800 rounded-2xl p-6 shadow-2xl relative overflow-hidden h-[450px] flex flex-col"
-        >
-          <div className="flex items-center gap-3 border-b border-zinc-800 pb-4 mb-4">
-            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <h3 className="font-mono text-xs text-emerald-400 uppercase tracking-tighter">Terminal // Jordan@Informatics-System</h3>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="bg-zinc-950 border border-zinc-800 rounded-2xl p-6 shadow-2xl relative overflow-hidden h-[450px] flex flex-col"
+          >
+            <div className="flex items-center gap-3 border-b border-zinc-800 pb-4 mb-4">
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <h3 className="font-mono text-xs text-emerald-400 uppercase tracking-tighter">Terminal // Jordan@Informatics-System</h3>
+            </div>
 
-          <div ref={scrollRef} className="flex-1 overflow-y-auto space-y-4 mb-4 scrollbar-hide">
-            {messages.map((msg, idx) => (
-              <div key={idx} className={`flex flex-col gap-1 ${msg.role === "user" ? "items-end" : "items-start"}`}>
-                <span className="text-[9px] text-zinc-600 ml-1 uppercase font-mono tracking-widest">
-                  {msg.role === "user" ? ">>> User_Request" : ">>> Core_Logic"}
-                </span>
-                <div className={`px-4 py-2 rounded-2xl text-sm font-mono border ${
-                  msg.role === "user" 
-                    ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400 rounded-tr-sm" 
-                    : "bg-zinc-900/50 border-zinc-800 text-gray-300 rounded-tl-sm"
-                }`}>
-                  {msg.content}
+            <div ref={scrollRef} className="flex-1 overflow-y-auto space-y-4 mb-4 scrollbar-hide">
+              {messages.map((msg, idx) => (
+                <div key={idx} className={`flex flex-col gap-1 ${msg.role === "user" ? "items-end" : "items-start"}`}>
+                  <span className="text-[9px] text-zinc-600 ml-1 uppercase font-mono tracking-widest">
+                    {msg.role === "user" ? ">>> User_Request" : ">>> Core_Logic"}
+                  </span>
+                  <div className={`px-4 py-2 rounded-2xl text-sm font-mono border ${
+                    msg.role === "user" 
+                      ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400 rounded-tr-sm" 
+                      : "bg-zinc-900/50 border-zinc-800 text-gray-300 rounded-tl-sm"
+                  }`}>
+                    {msg.content}
+                  </div>
                 </div>
-              </div>
-            ))}
-            {isTyping && (
-              <div className="text-[10px] text-emerald-500/50 font-mono animate-pulse lowercase ml-1"># processing_request...</div>
-            )}
-          </div>
+              ))}
+              {isTyping && (
+                <div className="text-[10px] text-emerald-500/50 font-mono animate-pulse lowercase ml-1"># processing_request...</div>
+              )}
+            </div>
 
-          <form onSubmit={handleSubmit} className="relative mt-auto">
-            <input 
-              type="text" 
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Ketik 'help'..." 
-              className="w-full bg-zinc-900 border border-zinc-800 rounded-xl py-3 px-4 text-sm text-white font-mono placeholder-zinc-700 focus:outline-none focus:border-emerald-500/30"
-            />
-            <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-500/50 hover:text-emerald-400 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-            </button>
-          </form>
-        </motion.div>
+            <form onSubmit={handleSubmit} className="relative mt-auto">
+              <input 
+                type="text" 
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Ketik 'help'..." 
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl py-3 px-4 text-sm text-white font-mono placeholder-zinc-700 focus:outline-none focus:border-emerald-500/30"
+              />
+              <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-500/50 hover:text-emerald-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </form>
+          </motion.div>
+        </div>
       </div>
-    </div>
+
+      {/* --- EASTER EGG ANIMATION OVERLAY --- */}
+      <AnimatePresence>
+        {showGacha && (
+          <motion.div 
+            className="fixed inset-0 z-[9999] pointer-events-none flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {/* Animasi Bintang Jatuh (Shooting Star) */}
+            <motion.div
+              initial={{ x: '-100vw', y: '-50vh', opacity: 1 }}
+              animate={{ x: 0, y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="absolute w-2 h-32 bg-yellow-300 rotate-45 blur-[2px] shadow-[0_0_30px_10px_rgba(253,224,71,0.8)]"
+            />
+            
+            {/* Ledakan Cahaya Emas (Gold Flash) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: [0, 1, 0], scale: [0.5, 5, 15] }}
+              transition={{ delay: 0.5, duration: 1.5, ease: "circOut" }}
+              className="absolute w-40 h-40 bg-yellow-400 rounded-full blur-3xl mix-blend-screen"
+            />
+
+            {/* Teks Bintang 5 */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, y: 50 }}
+              animate={{ opacity: [0, 1, 1, 0], scale: [0.8, 1.2, 1, 1], y: [50, 0, 0, 0] }}
+              transition={{ delay: 0.8, duration: 3 }}
+              className="relative z-10 flex flex-col items-center"
+            >
+              <h1 className="text-yellow-400 font-bold text-5xl md:text-7xl tracking-[0.5em] drop-shadow-[0_0_20px_rgba(250,204,21,1)] mb-4">
+                ★★★★★
+              </h1>
+              <p className="text-white font-mono text-xl md:text-2xl font-bold bg-black/50 px-6 py-2 rounded-full border border-yellow-500/50">
+                Jordan (AI Developer) Secured!
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
