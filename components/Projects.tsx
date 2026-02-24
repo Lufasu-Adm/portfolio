@@ -25,14 +25,34 @@ interface ProjectsProps {
 export const Projects = ({ onProjectClick }: ProjectsProps) => {
   const projects: Project[] = [
     {
+      title: "Genshin Impact Intelligence System",
+      showcaseId: "showcase-genshin",
+      description: "Data-Driven character insights menggunakan Unsupervised Learning (K-Means Clustering) untuk penentuan role objektif dan sistem rekomendasi hibrida berbasis jarak Euclidean.",
+      tags: ["Python", "Machine Learning", "Scikit-Learn", "Pandas"],
+      github: "https://github.com/Lufasu-Adm", 
+      className: "md:col-span-2", // Dibuat lebar agar jadi sorotan utama
+      gradient: "from-cyan-500/10 to-teal-900/20",
+      border: "border-cyan-500/20",
+    },
+    {
       title: "Mood Map AI",
       showcaseId: "showcase-mood-map",
       description: "Aplikasi kesehatan mental Privacy-First dengan arsitektur Hybrid. Mengintegrasikan Flutter dan FastAPI untuk analisis sentimen empatik menggunakan Llama 3.3.",
       tags: ["Flutter", "FastAPI", "Llama 3.3", "SQLite"],
       github: "https://github.com/Lufasu-Adm",
-      className: "md:col-span-2",
+      className: "md:col-span-1", // Disesuaikan agar pas berdampingan dengan Genshin
       gradient: "from-indigo-500/10 to-blue-900/20",
       border: "border-indigo-500/20",
+    },
+    {
+      title: "Enterprise Booking System",
+      showcaseId: "showcase-booking",
+      description: "Sistem manajemen ruang rapat berbasis Laravel 10 di PT PAL. Implementasi QR Code Attendance untuk efisiensi birokrasi.",
+      tags: ["Laravel 10", "PostgreSQL", "QR Code", "Enterprise"],
+      github: "https://github.com/Lufasu-Adm/booking-ruang-rapat",
+      className: "md:col-span-2",
+      gradient: "from-emerald-500/10 to-teal-900/20",
+      border: "border-emerald-500/20",
     },
     {
       title: "Waifu Habit Tracker",
@@ -63,16 +83,6 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
       className: "md:col-span-1",
       gradient: "from-amber-500/10 to-orange-900/20",
       border: "border-amber-500/20",
-    },
-    {
-      title: "Enterprise Booking System",
-      showcaseId: "showcase-booking",
-      description: "Sistem manajemen ruang rapat berbasis Laravel 10 di PT PAL. Implementasi QR Code Attendance untuk efisiensi birokrasi.",
-      tags: ["Laravel 10", "PostgreSQL", "QR Code", "Enterprise"],
-      github: "https://github.com/Lufasu-Adm/booking-ruang-rapat",
-      className: "md:col-span-2",
-      gradient: "from-emerald-500/10 to-teal-900/20",
-      border: "border-emerald-500/20",
     },
     {
       title: "AI Auto Research Assistant",
