@@ -1,7 +1,10 @@
 "use client";
 
-import { useState } from "react"; 
-import { Navbar } from "../components/Navbar";
+import { useState, useEffect } from "react"; 
+import { AnimatePresence } from "framer-motion";
+import { Preloader } from "../components/Preloader";
+import { CustomCursor } from "../components/CustomCursor";
+import { FullscreenNav } from "../components/FullscreenNav"; // <-- Update: Import FullscreenNav baru
 import { Hero } from "../components/Hero";
 import { About } from "../components/About";
 import { TechStack } from "../components/TechStack";
@@ -9,11 +12,24 @@ import { Projects } from "../components/Projects";
 import { Gallery } from "../components/Gallery";
 import { Contact } from "../components/Contact";
 import { TracingBeam } from "../components/TracingBeam"; 
-import { SparklesBackground } from "../components/SparklesBackground"; // 1. Tambahkan import Sparkles
+import { SparklesBackground } from "../components/SparklesBackground";
 
 export default function Home() {
+  // State untuk mengontrol Preloader
+  const [isLoading, setIsLoading] = useState(true);
+  
   // State untuk melacak ID proyek yang sedang aktif di-highlight
   const [activeHighlight, setActiveHighlight] = useState<string | null>(null);
+
+  // Kunci layar agar tidak bisa di-scroll saat Preloader masih berjalan
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+      window.scrollTo(0, 0);
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isLoading]);
 
   // Fungsi untuk menangani klik dari komponen Projects
   const handleProjectClick = (id: string) => {
@@ -26,41 +42,47 @@ export default function Home() {
   };
 
   return (
-    // Tambahkan class 'relative' di main agar tumpukan z-index bekerja dengan benar
-    <main className="min-h-screen bg-black text-white selection:bg-emerald-500/30 overflow-x-hidden scroll-smooth relative">
+    <main className="min-h-screen bg-black text-white selection:bg-emerald-500/30 overflow-x-hidden relative">
+      
+      {/* === ANIMASI PRELOADER === */}
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <Preloader onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
+      {/* === KURSOR KUSTOM === */}
+      <CustomCursor />
       
       {/* === BACKGROUND BINTANG BERKILAU GLOBAL === */}
-      {/* Posisi fixed di belakang segalanya (z-0), dan pointer-events-none agar tidak memblokir klik pada tombol/link */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <SparklesBackground />
       </div>
 
       {/* === KONTEN UTAMA === */}
-      {/* Dibungkus div relative z-10 agar selalu tampil di depan animasi bintang */}
-      <div className="relative z-10">
-        <Navbar />
+      {/* Disembunyikan (opacity-0) sampai isLoading menjadi false */}
+      <div className={`relative z-10 transition-opacity duration-1000 ${isLoading ? 'opacity-0 h-screen overflow-hidden pointer-events-none' : 'opacity-100'}`}>
+        
+        {/* === MENU OVERLAY FULLSCREEN === */}
+        <FullscreenNav /> {/* <-- Update: Menggunakan FullscreenNav pengganti Navbar lama */}
         
         <section id="home">
           <Hero />
         </section>
 
-        {/* Tech Stack ditaruh di luar TracingBeam agar efek lebarnya tetap full layar */}
         <TechStack /> 
         
-        {/* Bungkus sisa perjalanan portofoliomu dengan garis cahaya */}
-        <TracingBeam className="px-4 md:px-6">
+        <TracingBeam className="pl-12 pr-4 md:px-6">
           
           <section id="about">
             <About />
           </section>
           
           <section id="projects">
-            {/* Kirim fungsi handleProjectClick ke komponen Projects */}
             <Projects onProjectClick={handleProjectClick} />
           </section>
           
           <section id="gallery">
-            {/* Kirim state activeHighlight dan fungsi reset ke komponen Gallery */}
             <Gallery 
               activeId={activeHighlight} 
               onHighlightComplete={clearHighlight} 

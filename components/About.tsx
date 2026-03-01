@@ -90,7 +90,7 @@ export const About = () => {
                 y1={-1000}        
                 x2={lineX}        
                 y2={lineY}        
-                stroke="#27272a"  
+                stroke="#FFFFFF"  
                 strokeWidth={8}   
                 strokeLinecap="round"
               />

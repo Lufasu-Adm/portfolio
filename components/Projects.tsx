@@ -2,11 +2,8 @@
 
 import { motion } from "framer-motion";
 import React from "react";
+import { TiltCard } from "./TiltCard";
 
-/**
- * Interface untuk mendefinisikan struktur data setiap proyek.
- * Data diambil dari portofolio Jordan Wijayanto.
- */
 interface Project {
   title: string;
   showcaseId: string;
@@ -154,6 +151,7 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {projects.map((project, index) => (
+            // Layer 1: Animasi Scroll & Pengaturan Grid
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
@@ -166,48 +164,56 @@ export const Projects = ({ onProjectClick }: ProjectsProps) => {
                 damping: 20 
               }}
               viewport={{ once: false, amount: 0.2 }}
-              whileHover={{ scale: 1.02 }}
-              onClick={() => handleNavigation(project.showcaseId)}
-              className={`relative rounded-3xl p-8 border ${project.border} bg-gradient-to-br ${project.gradient} backdrop-blur-sm overflow-hidden group cursor-pointer ${project.className}`}
+              className={`h-full ${project.className}`}
             >
-              {/* Efek kilau saat hover */}
-              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
-              
-              <div className="relative z-10 h-full flex flex-col justify-between">
-                <div>
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-2xl font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
-                      {project.title}
-                    </h3>
-                    <a 
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()} // Supaya tidak men-trigger scroll saat klik link
-                      className="p-2 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-all shadow-lg"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                        <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                      </svg>
-                    </a>
+              {/* Layer 2: Komponen Interaktif 3D Tilt */}
+              <TiltCard 
+                className={`h-full w-full rounded-3xl p-8 border ${project.border} bg-gradient-to-br ${project.gradient} backdrop-blur-sm group cursor-pointer`}
+              >
+                {/* Layer 3: Area Klik & Konten */}
+                <div 
+                  onClick={() => handleNavigation(project.showcaseId)}
+                  className="relative h-full flex flex-col justify-between z-10"
+                >
+                  <div>
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-2xl font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
+                        {project.title}
+                      </h3>
+                      <a 
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()} 
+                        className="p-2 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-all shadow-lg relative z-20"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                          <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                        </svg>
+                      </a>
+                    </div>
+                    <p className="text-gray-400 leading-relaxed text-sm md:text-base font-light">
+                      {project.description}
+                    </p>
                   </div>
-                  <p className="text-gray-400 leading-relaxed text-sm md:text-base font-light">
-                    {project.description}
-                  </p>
-                </div>
 
-                <div className="flex flex-wrap gap-2 mt-8">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-3 py-1 text-[10px] uppercase tracking-widest font-mono text-emerald-300 bg-emerald-900/30 rounded-full border border-emerald-500/20 shadow-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {/* Layer 4: Tags dengan Efek Melayang Z-Axis */}
+                  <div 
+                    className="flex flex-wrap gap-2 mt-8"
+                    style={{ transform: "translateZ(30px)" }}
+                  >
+                    {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="px-3 py-1 text-[10px] uppercase tracking-widest font-mono text-emerald-300 bg-emerald-900/30 rounded-full border border-emerald-500/20 shadow-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </TiltCard>
             </motion.div>
           ))}
         </div>
