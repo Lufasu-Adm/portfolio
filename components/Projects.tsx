@@ -22,12 +22,22 @@ interface ProjectsProps {
 export const Projects = ({ onProjectClick }: ProjectsProps) => {
   const projects: Project[] = [
     {
+      title: "Enterprise Food Delivery Data Pipeline",
+      showcaseId: "showcase-food-pipeline",
+      description: "Automated microservices data pipeline. Menggunakan Playwright stealth mode untuk ekstraksi, divalidasi Pydantic, dan divisualisasikan real-time via Streamlit dengan Telegram alerts.",
+      tags: ["Python", "Docker", "Playwright", "Streamlit", "SQLite"],
+      github: "https://github.com/Lufasu-Adm/food-delivery-data-scraper",
+      className: "md:col-span-2", 
+      gradient: "from-blue-500/10 to-cyan-900/20",
+      border: "border-blue-500/20",
+    },
+    {
       title: "Genshin Impact Intelligence System",
       showcaseId: "showcase-genshin",
       description: "Data-Driven character insights menggunakan Unsupervised Learning (K-Means Clustering) untuk penentuan role objektif dan sistem rekomendasi hibrida berbasis jarak Euclidean.",
       tags: ["Python", "Machine Learning", "Scikit-Learn", "Pandas"],
       github: "https://github.com/Lufasu-Adm/genshin-impact-analytics", 
-      className: "md:col-span-2", 
+      className: "md:col-span-1", 
       gradient: "from-cyan-500/10 to-teal-900/20",
       border: "border-cyan-500/20",
     },
