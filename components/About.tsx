@@ -53,13 +53,20 @@ export const About = () => {
           </h2>
           <div className="space-y-4 text-gray-400 text-lg leading-relaxed">
             <p>
-              Halo, saya Jordan Wijayanto. Saat ini saya adalah mahasiswa semester 7 program studi Informatika di Telkom University Surabaya.
+              Halo, saya Jordan Wijayanto, lulusan S1 Informatika dari Telkom University
+              Surabaya dengan minat pada software engineering, web development, dan
+              pengembangan sistem berbasis teknologi modern.
             </p>
             <p>
-              Memiliki ketertarikan mendalam terhadap teknologi modern, khususnya pada pengembangan kecerdasan buatan (AI) dan rekayasa sistem terintegrasi.
+              Saya memiliki pengalaman sebagai Web Developer Intern di PT PAL Indonesia
+              dengan mengembangkan aplikasi web menggunakan Laravel dan PostgreSQL,
+              termasuk membangun REST API, authentication, role-based access, serta
+              berbagai fitur untuk mendukung kebutuhan sistem.
             </p>
             <p>
-              Di luar aktivitas akademik dan pengembangan perangkat lunak, saya mendedikasikan waktu luang untuk menikmati game seperti Wuthering Waves.
+               Saat ini saya terus mengembangkan kemampuan di bidang backend development,
+              quality assurance, dan artificial intelligence dengan fokus pada pembuatan
+              sistem yang reliable, terstruktur, dan sesuai dengan kebutuhan pengguna.
             </p>
           </div>
         </motion.div>
@@ -129,7 +136,7 @@ export const About = () => {
                 style={{ transform: "translateZ(50px)" }}
               >
                 <img 
-                  src="/portfolio/profile.png" 
+                  src="/portfolio/FOTO.png" 
                   alt="Jordan Wijayanto" 
                   className="w-full h-full object-cover object-top" 
                 />
