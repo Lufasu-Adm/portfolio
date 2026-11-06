@@ -136,7 +136,7 @@ export const About = () => {
                 style={{ transform: "translateZ(50px)" }}
               >
                 <img 
-                  src="/portfolio/FOTO.png" 
+                  src="/portfolio/AKU.jpeg" 
                   alt="Jordan Wijayanto" 
                   className="w-full h-full object-cover object-top" 
                 />
